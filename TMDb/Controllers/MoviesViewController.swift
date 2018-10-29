@@ -136,6 +136,7 @@ class MoviesViewController: UIViewController {
     
     // MARK: - Navigation
     
+
     
     @IBAction func search(_ sender: UIBarButtonItem) {
         
@@ -212,7 +213,7 @@ extension MoviesViewController {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionViewCell", for: indexPath) as! MovieCollectionViewCell
         
-        let viewModelCell = ObjectCellViewModel(title: movie.title ?? "", url: movie.urlPosterImage ?? "")
+        let viewModelCell = ObjectCellViewModel(title: movie.original_title ?? "", url: movie.urlPosterImage ?? "")
         
         cell.viewModel = viewModelCell
         
