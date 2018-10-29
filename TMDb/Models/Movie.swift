@@ -38,7 +38,16 @@ class Movie: Mappable {
     var production_countries: [ProductionCountry]?
     var spoken_languages: [SpokenLanguage]?
     
+    var urlPosterImage : String? {
+        guard let poster = poster_path else {return nil}
+        return "http://image.tmdb.org/t/p/w185/" + poster
+    }
     
+    var urlBackdropImage : String? {
+        guard let backdrop = backdrop_path else {return nil}
+        return "http://image.tmdb.org/t/p/w185/" + backdrop
+    }
+
     
     required convenience init?(map: Map) {
         self.init()
