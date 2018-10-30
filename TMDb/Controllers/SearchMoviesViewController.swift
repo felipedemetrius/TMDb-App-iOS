@@ -1,23 +1,26 @@
 //
-//  ViewController.swift
+//  SearchMoviesViewController.swift
 //  TMDb
 //
-//  Created by Felipe Silva  on 28/10/18.
+//  Created by Felipe Silva  on 29/10/18.
 //  Copyright © 2018 Felipe Silva . All rights reserved.
 //
 
 import UIKit
 import Alamofire
 
-class MoviesViewController: UIViewController {
+class SearchMoviesViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var labelMessage: UILabel!
     
     @IBOutlet weak var activityIndicatorNext: UIActivityIndicatorView!
-    var searchController : UISearchController!
+
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    var textSearch : String?
 
     private var isLoadingDataSource = false {
         didSet{
@@ -56,14 +59,16 @@ class MoviesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "UPCOMING MOVIES"
+        title = "SEARCH MOVIES"
+        configureCollectionView()
+
         observerViewModel()
         configureViewController()
-        configureSearchBarController()
-        configureCollectionView()
     }
     
     private func configureViewController(){
+        searchBar.text = textSearch
+        searchBar.delegate = self
         
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
@@ -84,15 +89,8 @@ class MoviesViewController: UIViewController {
         }
         
     }
-
     
-    private func configureSearchBarController(){
-        
-        searchController = UISearchController(searchResultsController: nil)
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = true
-        searchController.searchBar.delegate = self
-    }
+    
     
     
     private func configureCollectionView(){
@@ -105,7 +103,7 @@ class MoviesViewController: UIViewController {
         layout.itemSize = CGSize(width: screenWidth / 2 - 15, height: screenWidth / 2 + screenWidth/5)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 7.5
-
+        
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.collectionViewLayout = layout
@@ -137,7 +135,7 @@ class MoviesViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
+        
         if segue.identifier == "goToDetailMovie" {
             
             let vc = segue.destination as? MovieDetailViewController
@@ -148,46 +146,25 @@ class MoviesViewController: UIViewController {
                 vc?.viewModel = viewModel
             }
         }
-        else if segue.identifier == "goToSearch" {
-
-            let vc = segue.destination as? SearchMoviesViewController
-
-            if let text = sender as? String {
-                let viewModel = MoviesViewModel(name: text)
-                vc?.viewModel = viewModel
-                vc?.textSearch = text
-            }
-
-        }
-
-
-    }
-
-    
-    @IBAction func search(_ sender: UIBarButtonItem) {
         
-        searchController.searchBar.placeholder = "Search by name"
-        present(searchController, animated: true, completion: nil)
+        
     }
     
 }
 
-extension MoviesViewController : UISearchBarDelegate{
-    
+extension SearchMoviesViewController: UISearchBarDelegate{
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
-        
         searchBar.resignFirstResponder()
-        dismiss(animated: true, completion: nil)
-        performSegue(withIdentifier: "goToSearch", sender: searchController.searchBar.text)
-        searchController.searchBar.text = ""
+        viewModel?.search(name: searchBar.text ?? "")
     }
+    
 }
 
-extension MoviesViewController : UIScrollViewDelegate {
+extension SearchMoviesViewController : UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
+        searchBar.endEditing(true)
         let maximumOffset = scrollView.contentSize.height - self.collectionView.frame.size.height
         
         if viewModel?.dataSource.value.count == 0 {
@@ -202,7 +179,7 @@ extension MoviesViewController : UIScrollViewDelegate {
     }
 }
 
-extension MoviesViewController : UICollectionViewDelegate, UICollectionViewDataSource {
+extension SearchMoviesViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -215,7 +192,7 @@ extension MoviesViewController : UICollectionViewDelegate, UICollectionViewDataS
         
         return CGSize(width: screenWidth/2 - 15, height: screenWidth/2 + screenWidth/5);
     }
-
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -233,7 +210,7 @@ extension MoviesViewController : UICollectionViewDelegate, UICollectionViewDataS
     
 }
 
-extension MoviesViewController {
+extension SearchMoviesViewController {
     
     func getCell(movie : Movie, indexPath: IndexPath) -> MovieCollectionViewCell{
         

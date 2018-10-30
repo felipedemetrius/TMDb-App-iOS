@@ -23,6 +23,15 @@ class MoviesViewModel : MoviesViewDataSource {
         self.setDatasource()
     }
     
+    init(name: String) {
+        
+        self.dataSource = Dynamic([])
+        self.isLoadingDatasource = Dynamic(false)
+        self.isLoadingNext = Dynamic(false)
+        self.search(name: name)
+    }
+
+    
 }
 
 extension MoviesViewModel : MoviesViewDelegate {
@@ -33,6 +42,12 @@ extension MoviesViewModel : MoviesViewDelegate {
         service.get(handler)
     }
     
+    func search(name: String){
+        isLoadingDatasource.value = true
+        self.dataSource = Dynamic([])
+        service.get(nameStartsWith: name, completionHandler: handler)
+    }
+
     func nextPage(){
         
         isLoadingNext.value = true

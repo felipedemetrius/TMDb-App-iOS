@@ -19,6 +19,11 @@ struct API {
         public static func upcomingMovies() -> String {
             return host + "movie/upcoming"
         }
+        
+        public static func searchMovies() -> String {
+            return host + "search/movie"
+        }
+
     }
     
 }
