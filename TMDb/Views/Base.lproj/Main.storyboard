@@ -70,6 +70,7 @@
                         <outlet property="activityIndicatorNext" destination="vsc-qF-FsH" id="G08-3o-5HL"/>
                         <outlet property="collectionView" destination="e2p-Ep-Iu8" id="FBv-zu-zae"/>
                         <outlet property="labelMessage" destination="ZcO-q0-W0M" id="MvI-he-R7V"/>
+                        <segue destination="YXg-sn-e4P" kind="show" identifier="goToDetailMovie" id="vKc-Cp-1DT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -91,6 +92,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lBQ-lL-wOx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-509" y="266"/>
+        </scene>
+        <!--Movie Detail View Controller-->
+        <scene sceneID="B9h-69-2Uz">
+            <objects>
+                <viewController storyboardIdentifier="MovieDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YXg-sn-e4P" customClass="MovieDetailViewController" customModule="TMDb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="P5q-aD-Slf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="M3E-OR-gF6">
+                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="DKe-iv-bmM">
+                                <rect key="frame" x="169.5" y="373.5" width="37" height="37"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ti-Yl-kU6">
+                                <rect key="frame" x="149" y="418" width="78" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="M3E-OR-gF6" firstAttribute="top" secondItem="xY4-9a-RI5" secondAttribute="top" id="4hT-ed-0BZ"/>
+                            <constraint firstItem="M3E-OR-gF6" firstAttribute="trailing" secondItem="xY4-9a-RI5" secondAttribute="trailing" id="B07-6y-ONM"/>
+                            <constraint firstItem="DKe-iv-bmM" firstAttribute="centerY" secondItem="M3E-OR-gF6" secondAttribute="centerY" id="IPy-JE-Icc"/>
+                            <constraint firstItem="M3E-OR-gF6" firstAttribute="bottom" secondItem="xY4-9a-RI5" secondAttribute="bottom" id="h1Z-nX-AFa"/>
+                            <constraint firstItem="DKe-iv-bmM" firstAttribute="centerX" secondItem="M3E-OR-gF6" secondAttribute="centerX" id="mja-FG-eBl"/>
+                            <constraint firstItem="8Ti-Yl-kU6" firstAttribute="top" secondItem="DKe-iv-bmM" secondAttribute="bottom" constant="7.5" id="rnO-Sc-HJ0"/>
+                            <constraint firstItem="8Ti-Yl-kU6" firstAttribute="centerX" secondItem="DKe-iv-bmM" secondAttribute="centerX" id="x96-BQ-4qD"/>
+                            <constraint firstItem="M3E-OR-gF6" firstAttribute="leading" secondItem="xY4-9a-RI5" secondAttribute="leading" id="yAJ-xV-gi9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xY4-9a-RI5"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lMh-0i-q2T"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="DKe-iv-bmM" id="QJe-Fc-whq"/>
+                        <outlet property="labelMessageResults" destination="8Ti-Yl-kU6" id="OGF-QF-ekh"/>
+                        <outlet property="tableView" destination="M3E-OR-gF6" id="qTQ-qn-tEY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V67-dk-eBj" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="813.60000000000002" y="265.81709145427288"/>
         </scene>
     </scenes>
 </document>

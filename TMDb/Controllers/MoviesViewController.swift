@@ -74,10 +74,10 @@ class MoviesViewController: UIViewController {
             }
             
             if DeviceType.IS_IPHONE_5_OR_LESS {
-                navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.gray, NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 20)]
+                navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 20)]
                 
             } else {
-                navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.gray, NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 26)]
+                navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 26)]
             }
         } else {
             // Fallback on earlier versions
@@ -136,6 +136,20 @@ class MoviesViewController: UIViewController {
     
     // MARK: - Navigation
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if segue.identifier == "goToDetailMovie" {
+            
+            let vc = segue.destination as? MovieDetailViewController
+            
+            if let movie = sender as? Movie {
+                let viewModel = MovieDetailViewModel(movie: movie)
+                
+                vc?.viewModel = viewModel
+            }
+        }
+
+    }
 
     
     @IBAction func search(_ sender: UIBarButtonItem) {
@@ -180,7 +194,7 @@ extension MoviesViewController : UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        //performSegue(withIdentifier: "goToDetailMovie", sender: viewModel?.dataSource.value[indexPath.row])
+        performSegue(withIdentifier: "goToDetailMovie", sender: viewModel?.dataSource.value[indexPath.row])
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {

@@ -40,12 +40,12 @@ class Movie: Mappable {
     
     var urlPosterImage : String? {
         guard let poster = poster_path else {return nil}
-        return "http://image.tmdb.org/t/p/w185/" + poster
+        return "http://image.tmdb.org/t/p/w342/" + poster
     }
     
     var urlBackdropImage : String? {
         guard let backdrop = backdrop_path else {return nil}
-        return "http://image.tmdb.org/t/p/w185/" + backdrop
+        return "http://image.tmdb.org/t/p/w342/" + backdrop
     }
 
     
