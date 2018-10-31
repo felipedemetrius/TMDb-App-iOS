@@ -2,6 +2,7 @@
 
 ## Screenshots
 
+![TMDb-App-iOS](https://github.com/felipedemetrius/TMDb-App-iOS/blob/development/screenshots/screenshots2tmdb.jpeg)
 
 
 ## Getting Started
