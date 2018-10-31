@@ -24,3 +24,15 @@ class Genre: Mappable {
     }
     
 }
+
+extension Collection where Iterator.Element == Genre {
+    
+    var names: [String] {
+        var set = Set<String>()
+        for element in self {
+            set.insert(element.name ?? "")
+        }
+        return Array(set)
+    }
+}
+

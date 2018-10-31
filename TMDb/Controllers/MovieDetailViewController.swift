@@ -27,15 +27,11 @@ class MovieDetailViewController: UIViewController {
             if isLoading {
                 activityIndicator.startAnimating()
                 labelMessageResults.isHidden = true
-                tableView.separatorStyle = UITableViewCellSeparatorStyle.none
             } else {
                 activityIndicator.stopAnimating()
                 
                 if viewModel?.movie.value == nil {
                     labelMessageResults.isHidden = false
-                    tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-                } else {
-                    tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
                 }
             }
             tableView.reloadData()
@@ -101,9 +97,11 @@ class MovieDetailViewController: UIViewController {
     }
     
     private func setTableView(){
-        
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+
         tableView.register(UINib(nibName: "DescriptionTableViewCell", bundle: nil), forCellReuseIdentifier: "DescriptionTableViewCell")
-        
+        tableView.register(UINib(nibName: "GenresTableViewCell", bundle: nil), forCellReuseIdentifier: "GenresTableViewCell")
+
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -177,8 +175,13 @@ extension MovieDetailViewController : UITableViewDelegate, UITableViewDataSource
             
             
         } else if indexPath.section == Sections.Genres.rawValue {
-            return UITableViewCell()
-            
+            if let genresNames = movie.genres?.names {
+                return getGenresTableViewCell(genres: genresNames, indexPath: indexPath)
+
+            } else {
+                return getDescriptionTableViewCell(description: "No genre identified", indexPath: indexPath)
+
+            }
 
         } else if indexPath.section == Sections.Release.rawValue {
             
@@ -200,11 +203,7 @@ extension MovieDetailViewController : UITableViewDelegate, UITableViewDataSource
         
         switch section {
         case Sections.Genres.rawValue:
-            if (viewModel?.movie.value?.genres?.count ?? 0) >= 1 {
-                return 1
-            } else {
-                return 0
-            }
+            return 1
         case Sections.Description.rawValue:
             return 1
         case Sections.Release.rawValue:
@@ -256,6 +255,14 @@ extension MovieDetailViewController {
         return  cell
     }
     
-    
+    internal func getGenresTableViewCell(genres: [String], indexPath: IndexPath)-> GenresTableViewCell{
+        
+        let cell =  tableView.dequeueReusableCell(withIdentifier: "GenresTableViewCell", for: indexPath) as! GenresTableViewCell
+        
+        cell.setCell(dataSource: genres)
+        
+        return  cell
+    }
+
 }
 

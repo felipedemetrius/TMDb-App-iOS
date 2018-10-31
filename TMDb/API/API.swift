@@ -20,6 +20,10 @@ struct API {
             return host + "movie/upcoming"
         }
         
+        public static func movie(id: Int) -> String {
+            return host + "movie/" + id.description
+        }
+
         public static func searchMovies() -> String {
             return host + "search/movie"
         }

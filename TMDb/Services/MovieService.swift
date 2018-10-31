@@ -39,7 +39,16 @@ struct MovieService: Gettable {
         getPage(page: 1, completionHandler: completionHandler)
     }
 
-    
+    mutating func get(id: Int, completionHandler: @escaping (Result<Movie>) -> Void) {
+
+        url = API.Endpoints.movie(id: id)
+        
+        var filters = Parameters()
+        filters["api_key"] = API.key
+        
+        getObject(fromURL: url, parameters: filters, encoding: URLEncoding.queryString, completionHandler: completionHandler)
+    }
+
 }
 
 extension MovieService : Pageable {
@@ -51,7 +60,7 @@ extension MovieService : Pageable {
         params["page"] = page
         params["api_key"] = API.key
 
-        get(fromURL: url, parameters: params, encoding: URLEncoding.queryString, keyPath: "results", completionHandler: completionHandler)
+        getArray(fromURL: url, parameters: params, encoding: URLEncoding.queryString, keyPath: "results", completionHandler: completionHandler)
     }
     
 }

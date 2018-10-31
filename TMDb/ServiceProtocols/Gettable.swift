@@ -16,7 +16,7 @@ protocol Gettable {
 
 extension Gettable where Self.Data: Mappable {
     
-    func get(fromURL url: URLConvertible, method: HTTPMethod = .get, parameters: Parameters? = nil, encoding: ParameterEncoding? = nil, headers: HTTPHeaders? = nil, keyPath : String? = nil, completionHandler: @escaping (Result<[Data]>) -> Void) {
+    func getArray(fromURL url: URLConvertible, method: HTTPMethod = .get, parameters: Parameters? = nil, encoding: ParameterEncoding? = nil, headers: HTTPHeaders? = nil, keyPath : String? = nil, completionHandler: @escaping (Result<[Data]>) -> Void) {
         let request: DataRequest
         
         if let encoding = encoding {
@@ -24,13 +24,27 @@ extension Gettable where Self.Data: Mappable {
         } else {
             request = Alamofire.request(url, method: method, parameters: parameters, headers: headers)
         }
-        //request.responseInspector()
         
         request.responseArray(keyPath: keyPath) { (response: DataResponse<[Data]>) in
-            //print("query, ", response.request?.url?.query)
             completionHandler(response.result)
         }
         
     }
+    
+    func getObject(fromURL url: URLConvertible, method: HTTPMethod = .get, parameters: Parameters? = nil, encoding: ParameterEncoding? = nil, headers: HTTPHeaders? = nil, keyPath : String? = nil, completionHandler: @escaping (Result<Data>) -> Void) {
+        let request: DataRequest
+        
+        if let encoding = encoding {
+            request = Alamofire.request(url, method: method, parameters: parameters, encoding: encoding, headers: headers)
+        } else {
+            request = Alamofire.request(url, method: method, parameters: parameters, headers: headers)
+        }
+        
+        request.responseObject(keyPath: keyPath) { (response: DataResponse<Data>) in
+            completionHandler(response.result)
+        }
+        
+    }
+
     
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="GenresTableViewCell" rowHeight="84" id="2D7-Tu-gkH" customClass="GenresTableViewCell" customModule="TMDb" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="83"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2D7-Tu-gkH" id="quc-li-oZF">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="82.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Prw-GA-h5y">
+                        <rect key="frame" x="8" y="8" width="304" height="66.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="66.5" id="GOo-Ri-PB7"/>
+                        </constraints>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bUr-Rk-SD5">
+                            <size key="itemSize" width="0.0" height="42"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Prw-GA-h5y" firstAttribute="top" secondItem="quc-li-oZF" secondAttribute="top" constant="8" id="MHN-O5-EEa"/>
+                    <constraint firstAttribute="trailing" secondItem="Prw-GA-h5y" secondAttribute="trailing" constant="8" id="P4u-Cf-lWe"/>
+                    <constraint firstAttribute="bottom" secondItem="Prw-GA-h5y" secondAttribute="bottom" constant="8" id="t1h-ek-kXU"/>
+                    <constraint firstItem="Prw-GA-h5y" firstAttribute="leading" secondItem="quc-li-oZF" secondAttribute="leading" constant="8" id="v0U-YC-xUK"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="Gkr-ps-jgQ"/>
+            <connections>
+                <outlet property="collectionView" destination="Prw-GA-h5y" id="BQJ-Bg-nHS"/>
+                <outlet property="constraintHeightCollection" destination="GOo-Ri-PB7" id="Fnp-PA-Ofy"/>
+            </connections>
+            <point key="canvasLocation" x="124" y="46.5"/>
+        </tableViewCell>
+    </objects>
+</document>

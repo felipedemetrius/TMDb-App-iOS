@@ -8,9 +8,16 @@
 
 import UIKit
 import Foundation
+import Alamofire
 
 protocol MovieDetailViewDataSource : SetImageViewDelegate {
     
     var isLoading: Dynamic<Bool> { get }
     var movie : Dynamic<Movie?> { get }
+    var service : MovieService { get }
+}
+
+protocol MovieDetailViewDelegate: MovieDetailViewDataSource {
+    mutating func setMovieDetail(id: Int)
+    func handler(result: Result<Movie>)
 }
