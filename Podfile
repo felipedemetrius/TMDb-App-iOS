@@ -5,11 +5,11 @@ use_frameworks!
 target ‘TMDb’ do
     pod 'Alamofire'
     pod 'AlamofireObjectMapper'
-    pod 'Kingfisher', '~> 4.0'
+    pod 'Kingfisher'
 end
 
 target 'TMDbTests' do
     pod 'Alamofire'
     pod 'AlamofireObjectMapper'
-    pod 'Kingfisher', '~> 4.0'
+    pod 'Kingfisher'
 end
