@@ -2,6 +2,7 @@
 
 ## Screenshots
 
+![TMDb-App-iOS](https://github.com/felipedemetrius/TMDb-App-iOS/blob/development/screenshots/screenshots2tmdb.jpeg)
 
 
 ## Getting Started
@@ -15,7 +16,7 @@
 
 - iOS 9.0+ 
 - Xcode 10.0+
-- Swift 4.2+
+- Swift 4.0+
 
 ## Third-party libraries
 
