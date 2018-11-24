@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieCollectionViewCell" id="Dij-og-WIf" customClass="MovieCollectionViewCell" customModule="TMDb" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="127" height="197"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="127" height="197"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Gyq-kw-caN">
+                        <rect key="frame" x="8" y="8" width="111" height="144"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Venon" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="NbX-fc-XLG">
+                        <rect key="frame" x="41.5" y="153" width="44.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="1HA-8F-U6Z">
+                        <rect key="frame" x="45" y="62" width="37" height="37"/>
+                        <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </activityIndicatorView>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="NbX-fc-XLG" secondAttribute="bottom" constant="4" id="3Je-Im-yaA"/>
+                <constraint firstAttribute="trailing" secondItem="Gyq-kw-caN" secondAttribute="trailing" constant="8" id="44q-qu-ADg"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NbX-fc-XLG" secondAttribute="trailing" id="Ajt-xr-JXO"/>
+                <constraint firstItem="NbX-fc-XLG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Dij-og-WIf" secondAttribute="leading" id="Kt6-fG-ddE"/>
+                <constraint firstItem="Gyq-kw-caN" firstAttribute="leading" secondItem="Dij-og-WIf" secondAttribute="leading" constant="8" id="OBO-zb-yan"/>
+                <constraint firstItem="1HA-8F-U6Z" firstAttribute="centerX" secondItem="Gyq-kw-caN" secondAttribute="centerX" id="YFb-U4-M8E"/>
+                <constraint firstAttribute="bottom" secondItem="Gyq-kw-caN" secondAttribute="bottom" constant="45" id="dGj-bm-VzA"/>
+                <constraint firstItem="NbX-fc-XLG" firstAttribute="top" secondItem="Gyq-kw-caN" secondAttribute="bottom" constant="1" id="i2A-jY-xYU"/>
+                <constraint firstItem="NbX-fc-XLG" firstAttribute="centerX" secondItem="Gyq-kw-caN" secondAttribute="centerX" id="uW4-8X-bpt"/>
+                <constraint firstItem="Gyq-kw-caN" firstAttribute="top" secondItem="Dij-og-WIf" secondAttribute="top" constant="8" id="xTM-q3-VJ3"/>
+                <constraint firstItem="1HA-8F-U6Z" firstAttribute="centerY" secondItem="Gyq-kw-caN" secondAttribute="centerY" id="y1H-EV-fqB"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="NpX-qw-ROn"/>
+            <size key="customSize" width="127" height="197"/>
+            <connections>
+                <outlet property="activityIndicator" destination="1HA-8F-U6Z" id="99c-hq-t6g"/>
+                <outlet property="imageView" destination="Gyq-kw-caN" id="9mZ-Om-1og"/>
+                <outlet property="label" destination="NbX-fc-XLG" id="QiB-pr-d3Z"/>
+            </connections>
+            <point key="canvasLocation" x="6.5" y="127.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="placeholder" width="800" height="600"/>
+    </resources>
+</document>
